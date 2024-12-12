@@ -1,6 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,29 +17,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//Routing
-
-// "/shirts"
-
-app.MapGet("/shirts", ()=> {
-    return "Reading all the shirts.";
-});
-
-app.MapGet("/shirts/{id}",(int id)=> {
-    return $"Reading shirt with ID: {id}";
-});
-
-app.MapPost("/shirts/",()=>{
-    return "Creating a shirt.";
-});
-
-app.MapPut("/shirts/{id}",(int id)=> {
-    return $"Updating shirt with ID: {id}";
-});
-
-app.MapDelete("/shirts/{id}", (int id)=> {
-    return $"Deleting shirt with ID: {id}";
-});
-
+app.MapControllers();
 
 app.Run();
