@@ -17,9 +17,9 @@ namespace shirt_api.Controllers
         }
 
         [HttpGet("{id}")]
-        public string GetShirtById(int id)
+        public string GetShirtById(int id, [FromQuery] string? color)
         {
-            return $"Reading shirt with ID: {id}";
+            return $"Reading shirt with ID: {id}, color: {color}";
         }
 
         [HttpPost]
