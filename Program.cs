@@ -16,29 +16,29 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+//Routing
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+// "/shirts"
+
+app.MapGet("/shirts", ()=> {
+    return "Reading all the shirts.";
 })
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+
+app.MapGet("/shirt/{id}",(int id)=> {
+    return $"Reading shirt with ID: {id}"
+})
+
+app.MapPost("/shirts",()=>{
+    return "Creating a shirt.";
+})
+
+app.MapPut("/shirts/{id}",(int id)=> {
+    return $"Updating shirt with ID: {id}";
+})
+
+app.MapDelete("/shirts/{id}", (int id)=> {
+    return $"Deleting shirt with ID: {id}";
+})
+
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
