@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using shirt_api.Models;
+
 
 namespace shirt_api.Controllers
 {
@@ -23,10 +25,11 @@ namespace shirt_api.Controllers
         }
 
         [HttpPost]
-        public string CreateShirt()
+        public string CreateShirt([FromBody] Shirt shirt)
         {
             return "Creating a shirt";
         }
+
 
         [HttpPut("{id}")]
         public string UpdateShirt(int id)
