@@ -22,15 +22,15 @@ namespace shirt_api.Controllers
         };
 
         [HttpGet]
-        public string GetShirts()
+        public IActionResult GetShirts()
         {
-            return "Reading all shirts.";
+            return Ok(shirts);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetShirtById(int id)
         {
-            
+
             var shirt = shirts.FirstOrDefault(x => x.ShirtId == id);
 
 
@@ -44,22 +44,22 @@ namespace shirt_api.Controllers
         }
 
         [HttpPost]
-        public string CreateShirt([FromBody] Shirt shirt)
+        public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
-            return "Creating a shirt";
+            return Ok("Creating a shirt");
         }
 
 
         [HttpPut("{id}")]
-        public string UpdateShirt(int id)
+        public IActionResult UpdateShirt(int id)
         {
-            return $"Updating shirt with ID: {id}";
+            return Ok($"Updating shirt with ID: {id}");
         }
 
         [HttpDelete("{id}")]
-        public string DeleteShirt(int id)
+        public IActionResult DeleteShirt(int id)
         {
-            return $"Deleting shirt with ID: {id}";
+            return Ok($"Deleting shirt with ID: {id}");
         }
     }
 }
