@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using shirt_api.Models;
-
+using shirt_api.Models.Repositories;
+using shirt_api.Models.Filters;
 
 namespace shirt_api.Controllers
 {
@@ -13,28 +14,21 @@ namespace shirt_api.Controllers
     public class ShirtsController : ControllerBase
     {
 
-        
+
 
         [HttpGet]
         public IActionResult GetShirts()
         {
+            var shirts = ShirtRepository.GetAllShirts();
             return Ok(shirts);
         }
 
         [HttpGet("{id}")]
+        [Shirt_ValidateShirtIdFilter]
         public IActionResult GetShirtById(int id)
         {
 
-            var shirt = shirts.FirstOrDefault(x => x.ShirtId == id);
-
-
-
-            if(shirt == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(shirt);
+            return Ok(ShirtRepository.GetShirtById(id));
         }
 
         [HttpPost]
