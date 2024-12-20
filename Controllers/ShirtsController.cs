@@ -19,8 +19,7 @@ namespace shirt_api.Controllers
         [HttpGet]
         public IActionResult GetShirts()
         {
-            var shirts = ShirtRepository.GetAllShirts();
-            return Ok(shirts);
+            return Ok(ShirtRepository.GetShirts());
         }
 
         [HttpGet("{id}")]
@@ -34,7 +33,14 @@ namespace shirt_api.Controllers
         [HttpPost]
         public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
-            return Ok("Creating a shirt");
+            if(shirt == null) return BadRequest();
+
+            var existingShirt = ShirtRepository.GetShirtByProperties(shirt.Brand,shirt.Gender,shirt.Color,shirt.Size);
+
+            if(existingShirt != null) return BadRequest();
+
+            ShirtRepository.AddShirt(shirt);
+            return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId}, shirt);
         }
 
 
