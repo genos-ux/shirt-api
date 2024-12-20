@@ -14,14 +14,6 @@ namespace shirt_api.Models.Filters
 
             if(shirt == null)
             {
-                // context.ModelState.AddModelError("Shirt","Shirt object is null.");
-
-                // var problemDetails = new ValidationProblemDetails(context.ModelState)
-                // {
-                //     Status = StatusCodes.Status400BadRequest
-                // };
-                // context.Result = new BadRequestObjectResult(problemDetails);
-
                 context.ModelState.AddModelError("Shirt","Shirt object is null.");
                 var problemDetails = new ValidationProblemDetails(context.ModelState)
                 {
@@ -33,7 +25,7 @@ namespace shirt_api.Models.Filters
             else
             {
                 var existingShirt = ShirtRepository.GetShirtByProperties(shirt.Brand,shirt.Gender,shirt.Color,shirt.Size);
-                
+
                 if(existingShirt != null)
                 {
                     context.ModelState.AddModelError("Shirt","Shirt already exists.");

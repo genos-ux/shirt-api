@@ -31,14 +31,9 @@ namespace shirt_api.Controllers
         }
 
         [HttpPost]
+        [Shirt_ValidateCreateShirtFilter]
         public IActionResult CreateShirt([FromBody] Shirt shirt)
         {
-            if(shirt == null) return BadRequest();
-
-            var existingShirt = ShirtRepository.GetShirtByProperties(shirt.Brand,shirt.Gender,shirt.Color,shirt.Size);
-
-            if(existingShirt != null) return BadRequest(new {message = "Shirt already exists."});
-
             ShirtRepository.AddShirt(shirt);
             return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId}, shirt);
         }
