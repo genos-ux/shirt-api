@@ -37,7 +37,7 @@ namespace shirt_api.Controllers
 
             var existingShirt = ShirtRepository.GetShirtByProperties(shirt.Brand,shirt.Gender,shirt.Color,shirt.Size);
 
-            if(existingShirt != null) return BadRequest();
+            if(existingShirt != null) return BadRequest(new {message = "Shirt already exists."});
 
             ShirtRepository.AddShirt(shirt);
             return CreatedAtAction(nameof(GetShirtById), new { id = shirt.ShirtId}, shirt);
