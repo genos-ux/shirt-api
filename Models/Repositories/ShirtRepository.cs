@@ -45,4 +45,15 @@ public static class ShirtRepository
 
         shirts.Add(shirt);
     }
+
+    public static void UpdateShirt(Shirt shirt)
+    {
+        var shirtToUpdate = shirts.First(x => x.ShirtId == shirt.ShirtId);
+
+        shirtToUpdate.Brand = shirt.Brand;
+        shirtToUpdate.Color = shirt.Color;
+        shirtToUpdate.Size = shirt.Size;
+        shirtToUpdate.Gender = shirt.Gender;
+        shirtToUpdate.Price = shirt.Price;
+    }
 }
