@@ -46,7 +46,7 @@ public static class ShirtRepository
         shirts.Add(shirt);
     }
 
-    public static void UpdateShirt(Shirt shirt)
+    public static void ModifyShirt(Shirt shirt)
     {
         var shirtToUpdate = shirts.First(x => x.ShirtId == shirt.ShirtId);
 

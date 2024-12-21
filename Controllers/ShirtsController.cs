@@ -40,9 +40,20 @@ namespace shirt_api.Controllers
 
 
         [HttpPut("{id}")]
-        public IActionResult UpdateShirt(int id)
+        public IActionResult UpdateShirt(int id,Shirt shirt)
         {
-            return Ok($"Updating shirt with ID: {id}");
+            if(id != shirt.ShirtId) return BadRequest();
+
+            try
+            {
+                ShirtRepository.ModifyShirt(shirt);
+            }
+            catch
+            {
+                if(!ShirtRepository.ShirtExists(id)) return NotFound();
+                throw;
+            }
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
