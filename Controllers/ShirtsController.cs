@@ -40,9 +40,11 @@ namespace shirt_api.Controllers
 
 
         [HttpPut("{id}")]
+        [Shirt_ValidateShirtIdFilter]
+        [Shirt_ValidateUpdateShirtFilter]
         public IActionResult UpdateShirt(int id,Shirt shirt)
         {
-            if(id != shirt.ShirtId) return BadRequest();
+            // if(id != shirt.ShirtId) return BadRequest();
 
             try
             {
