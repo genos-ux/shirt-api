@@ -61,8 +61,11 @@ namespace shirt_api.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteShirt(int id)
         {
+            var shirt = ShirtRepository.GetShirtById(id);
+
             ShirtRepository.RemoveShirt(id);
-            return NoContent();
+
+            return Ok(shirt);
         }
     }
 }
