@@ -56,4 +56,16 @@ public static class ShirtRepository
         shirtToUpdate.Gender = shirt.Gender;
         shirtToUpdate.Price = shirt.Price;
     }
+
+    public static void RemoveShirt(int id)
+    {
+        var shirtToDelete = GetShirtById(id);
+
+        if(shirtToDelte != null)
+        {
+           shirts.Remove(shirtToDelete);
+        }
+
+
+    }
 }
