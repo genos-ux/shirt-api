@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using shirt_api.Models.Repositories;
 
-namespace shirt_api.Models.Filters
+namespace shirt_api.Models.Filters.ActionFilters
 {
     public class Shirt_ValidateCreateShirtFilterAttribute: ActionFilterAttribute
     {

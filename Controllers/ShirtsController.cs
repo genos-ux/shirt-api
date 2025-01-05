@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using shirt_api.Models;
 using shirt_api.Models.Repositories;
-using shirt_api.Models.Filters;
+using shirt_api.Models.ActionFilters.Filters;
 
 namespace shirt_api.Controllers
 {
@@ -13,9 +13,6 @@ namespace shirt_api.Controllers
     [Route("api/[controller]")]
     public class ShirtsController : ControllerBase
     {
-
-
-
         [HttpGet]
         public IActionResult GetShirts()
         {
@@ -59,6 +56,7 @@ namespace shirt_api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Shirt_ValidateShirtIdFilter]
         public IActionResult DeleteShirt(int id)
         {
             var shirt = ShirtRepository.GetShirtById(id);

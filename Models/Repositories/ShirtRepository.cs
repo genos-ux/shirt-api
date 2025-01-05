@@ -61,7 +61,7 @@ public static class ShirtRepository
     {
         var shirtToDelete = GetShirtById(id);
 
-        if(shirtToDelte != null)
+        if(shirtToDelete != null)
         {
            shirts.Remove(shirtToDelete);
         }
